@@ -8,7 +8,7 @@ class Connection{
      * @var Resource 
      */
     var $mysqli = null;
-
+ 
     function __construct(){
         try{
             if(!$this->mysqli){
@@ -23,14 +23,17 @@ class Connection{
     }
 
     public function executeQuery($sql){
-		$con = mysqli_connect(SERVER, USER,PASS,DB);
-		if (!$con)
-		{
-		 	die('Could not connect: ' . mysql_error());
-		}
-		$result = mysqli_query($con,$sql);
-		mysqli_close($con);
+		//$this->$conn = mysqli_connect(SERVER, USER,PASS,DB);
+		//if (!$conn)
+		//{
+		// 	die('Could not connect: ' . mysql_error());
+		//}
+		$result = mysqli_query($this->mysqli,$sql);
+		mysqli_close($this->mysqli);
 		return $result;
 	}
+
 }
+
+
 ?>

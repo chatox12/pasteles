@@ -1,6 +1,6 @@
 <?php
-include_once('api.php');
+    include_once('api.php');
 
-$api = new api();
-echo $api->getApi($_GET["id"]);
+    $api = new api();
+    echo $api->getApi($_GET["id"]);
 ?>

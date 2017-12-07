@@ -57,12 +57,13 @@
 			$conn = new connection();
 			$stmt = $conn->mysqli->prepare($query);
 			$stmt->execute();
-			$cliente = array();
+			$notificacion = array();
 			$stmt->bind_result($id,$estado,$idpedido);
 			while($stmt->fetch()){
-				$cliente[] = '{id: '.$id.' ,  estado:  '.$estado.' ,  idpedido:  '.$idpedido.'}';
+				$notificacion[] = '{"id": '.$id.' ,  "estado":  '.$estado.' ,  "idpedido":  '.$idpedido.'}';
+			
 			}
-			return $cliente;
+			return $notificacion;
 			$conn->close;
 		}
 
@@ -76,7 +77,7 @@
 			$stmt->bind_result($id,$estado, $idpedido);
 				while($stmt->fetch())
 				{
-					$tipoUsuarioA[] = '{id:  '.$id.' ,  estado: '.$estado.' ,  idpedido: '.$idpedido.'}';
+					$cliente[] = '{"id": '.$id.' ,  "estado":  '.$estado.' ,  "idpedido":  '.$idpedido.'}';
 				}		 	
 				
 			return $tipoUsuarioA;	

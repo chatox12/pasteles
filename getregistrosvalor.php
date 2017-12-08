@@ -2,13 +2,18 @@
     include_once('api.php');
     
     $api = new api();
-    $data = $api->getRegistrosTablaId($_GET["tabla"], $_GET["columna"], $_GET["valor"]);
-    
-    //header('Access-Control-Allow-Origin: *');
-    //header('Content-type:application/json');
-    //echo json_encode($data,JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK );
-    array_pop($data);    
-    print_json(200, "OK", $data);
+    $data = $api->getRegistrosTablaValor($_GET["tabla"], $_GET["columna"], $_GET["valor"]);
+    array_pop($data);
+   
+    if(count($data) == 0){
+        print_json(404, "Not Found", $data);
+
+    }
+    else{
+        print_json(200, "OK", $data);
+    }
+        
+
     //echo '{"monto": "'.$monto[0]->valor.'","moneda":"'.$moneda[0]->nombre.'","simbolo":"'.$moneda[0]->simbolo.'"}';
     
     function print_json($status, $mensaje, $data) {

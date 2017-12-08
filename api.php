@@ -125,28 +125,46 @@
 	public function getRegistrosTabla($tabla){
 		$consulta="SELECT * FROM ".$tabla.";";
         $db = new Connection();
-		$result = $db->executeQuery($consulta);
-		// Hace el rrecorrido por el array de datos y lo guarda en la variable $rows
-        while ($rows[] = $result->fetch_assoc());
-        // Retorna el resultado obtenido
+		
+		if($result = $db->executeQuery($consulta)){
+			$total_rows = $result->num_rows;
+			
+					if($total_rows > 0){
+						// Hace el rrecorrido por el array de datos y lo guarda en la variable $rows
+						while ($rows[] = $result->fetch_assoc());
+					}
+					else{
+						$rows[] = null;	
+					}
+		}
+		else{
+			$rows[] = null;
+		}
+
+		        // Retorna el resultado obtenido
         return $rows;
 	}
 //funcion para realizar busqueda dentro de las tablas
-	public function getRegistrosTablaId($tabla,$columna,$valor){
+	public function getRegistrosTablaValor($tabla,$columna,$valor){
 		$consulta='SELECT * FROM '.$tabla.' WHERE '.$columna.' = '.$valor.';';
 		$db = new Connection();
-		echo $consulta;
-		$result = $db->executeQuery($consulta);
+
+	if($result = $db->executeQuery($consulta)){
 		$total_rows = $result->num_rows;
 		// Hace el rrecorrido por el array de datos y lo guarda en la variable $rows
-	if($total_rows > 0){
-		while ($rows[] = $result->fetch_assoc());
-			
-	}
-		else{
-			echo "total rows".$total_rows;
-			echo "columnas no encontrada";
+		if($total_rows > 0){
+			while ($rows[] = $result->fetch_assoc());
+				
 		}
+			else{
+			$rows[] = null;	
+			}
+
+	}
+	else{
+		$rows[] = null;
+	}
+		
 		        // Retorna el resultado obtenido
       return $rows;
 	}

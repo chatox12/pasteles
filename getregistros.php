@@ -3,14 +3,18 @@
     
     $api = new api();
     $data = $api->getRegistrosTabla($_GET["tabla"]);
-    
-    //header('Access-Control-Allow-Origin: *');
-    //header('Content-type:application/json');
-    //echo json_encode($data,JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK );
     array_pop($data);    
-    print_json(200, "OK", $data);
-    //echo '{"monto": "'.$monto[0]->valor.'","moneda":"'.$moneda[0]->nombre.'","simbolo":"'.$moneda[0]->simbolo.'"}';
-    
+
+    //compara si trae datos el array 
+    if(count($data) == 0){
+    //si no hay datos se envia el mensaje de no encontrado 
+        print_json(404, "Not Found", $data);        
+    }
+    else{
+    //si tiene datos el array envia los datos que ha obtenido
+        print_json(200, "OK", $data);
+        
+    }    
     function print_json($status, $mensaje, $data) {
         header("HTTP/1.1 $status $mensaje");
         header("Content-Type: application/json; charset=UTF-8");

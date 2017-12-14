@@ -7,8 +7,8 @@
 	{
 //=======================Clientes====================================
 //insertar cliente
-		public function postCliente($nombre, $apellido,$direccion, $telefono){
-			$consulta=("INSERT INTO cliente (nombre_cliente, apellido_cliente,direccion_cliente,telefono_cliente)VALUES (\"".$nombre."\", \"".$apellido."\", \"".$direccion."\", \"".$telefono."\")");
+		public function postCliente($nombre, $apellido,$direccion, $telefono,$nickname,$password,$correo,$nit){
+			$consulta=("INSERT INTO cliente (nombre_cliente, apellido_cliente,direccion_cliente,telefono_cliente)VALUES (\"".$nombre."\", \"".$apellido."\", \"".$direccion."\", \"".$telefono."\", \"".$nickname."\", \"".$password."\", \"".$correo."\", \"".$nit."\")");
 			echo $consulta;
 			$db = new Connection();
 			$cliente = $db->executeQuery($consulta);

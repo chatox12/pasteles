@@ -94,6 +94,17 @@
 	}
 
 //
+//insertar imagenes de pasteles
+//============================insertar imagenes de pasteles=============
+	public function postFotografia($fotografia,$idPasteles){
+		$consulta = ("INSERT INTO fotografias_pasteles(fotografia_p,pasteles_venta_idpasteles_venta) VALUES (\"".$fotografia."\", \"".$idPasteles."\")");
+		echo $consulta;
+		$conn = new Connection();
+		$fotografia = mysqli_query($conn, $consulta);
+		$conn->close();
+	}
+
+//
 //========================VALIDAR PEDIDO================================
 //funcion para insertar en la tabla Validar pedido
 	public function postValidarPedido($estado, $idUsuario, $idPedido){
@@ -102,6 +113,7 @@
 		$db = new Connection();
 		$cliente = $db->executeQuery($consulta);
 	}
+//
 //
 //funcion para actualizar datos 
 	public function actualizarUsuario($tabla, $campo, $nuevoValor, $id)

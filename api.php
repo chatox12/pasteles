@@ -8,7 +8,7 @@
 //=======================Clientes====================================
 //insertar cliente
 		public function postCliente($nombre, $apellido,$direccion, $telefono,$nickname,$password,$correo,$nit){
-			$consulta=("INSERT INTO cliente (nombre_cliente, apellido_cliente,direccion_cliente,telefono_cliente)VALUES (\"".$nombre."\", \"".$apellido."\", \"".$direccion."\", \"".$telefono."\", \"".$nickname."\", \"".$password."\", \"".$correo."\", \"".$nit."\")");
+			$consulta=("INSERT INTO cliente (nombre_cliente, apellido_cliente,direccion_cliente,telefono_cliente,nickname_cliente,password_cliente,correo_cliente,nit_cliente)VALUES (\"".$nombre."\", \"".$apellido."\", \"".$direccion."\", \"".$telefono."\", \"".$nickname."\", \"".$password."\", \"".$correo."\", \"".$nit."\")");
 			echo $consulta;
 			$db = new Connection();
 			$cliente = $db->executeQuery($consulta);
@@ -37,8 +37,8 @@
 //
 //=======================OFERTA====================================
 //insertar en la tabla ofertas
-	public function postOferta($finicio, $ffin, $descuento, $cantidad, $estado, $idpedido){
-		$consulta=("INSERT INTO oferta (fecha_inicio_oferta, fecha_fin_oferta, descuento_oferta, cantidad_oferta, estado_oferta, pedido_idpedido)VALUES (\"".$finicio."\", \"".$ffin."\", \"".$descuento."\", \"".$cantidad."\", \"".$estado."\", \"".$idpedido."\")");
+	public function postOferta($finicio, $ffin, $descuento, $cantidad, $estado){
+		$consulta=("INSERT INTO oferta (fecha_inicio_oferta, fecha_fin_oferta, descuento_oferta, cantidad_oferta, estado_oferta, pedido_idpedido)VALUES (\"".$finicio."\", \"".$ffin."\", \"".$descuento."\", \"".$cantidad."\", \"".$estado."\")");
 		echo $consulta;
 		$db = new Connection();
 		$cliente = $db->executeQuery($consulta);
@@ -46,8 +46,8 @@
 //
 //======================PASTELES PEDIDO=================================
 //para insertar en la tabla ofertas
-	public function postPedidoPastel($cantidad, $rebanadas, $id_pastelesVenta, $idPedido){
-		$consulta=("INSERT INTO pasteles_pedido (cantidad_pasteles_pedido, rebanadas_pasteles_pedido, pasteles_venta_idpasteles_venta, pedido_idpedido)VALUES (\"".$cantidad."\", \"".$rebanadas."\", \"".$id_pastelesVenta."\", \"".$idPedido."\")");
+	public function postPedidoPastel($cantidad, $rebanadas, $id_pastelesVenta){
+		$consulta=("INSERT INTO pasteles_pedido (cantidad_pasteles_pedido, rebanadas_pasteles_pedido, pasteles_venta_idpasteles_venta)VALUES (\"".$cantidad."\", \"".$rebanadas."\", \"".$id_pastelesVenta."\")");
 		echo $consulta;
 		$db = new Connection();
 		$cliente = $db->executeQuery($consulta);
@@ -55,8 +55,8 @@
 //
 //===============================PASTELES VENTA===========================
 //para insertar pasteles para la venta
-	public function postPastelesVenta($nombre, $precio, $descripcion, $fotografia,$idOcasion){
-		$consulta=("INSERT INTO pasteles_venta (nombre_pasteles_venta, precio_pasteles_venta, descripcion_pasteles_venta, fotografia_pasteles_venta, ocasion_idocasion)VALUES (\"".$nombre."\", \"".$precio."\", \"".$descripcion."\", \"".$fotografia."\", \"".$idOcasion."\")");
+	public function postPastelesVenta($nombre, $precio, $descripcion, $fotografia,$idOcasion,$idOferta){
+		$consulta=("INSERT INTO pasteles_venta (nombre_pasteles_venta, precio_pasteles_venta, descripcion_pasteles_venta, fotografia_pasteles_venta, ocasion_idocasion)VALUES (\"".$nombre."\", \"".$precio."\", \"".$descripcion."\", \"".$fotografia."\", \"".$idOcasion."\", \"".$idOferta."\")");
 		echo $consulta;
 		$db = new Connection();
 		$cliente = $db->executeQuery($consulta);
@@ -64,7 +64,7 @@
 //
 //================================PEDIDOS================================
 //funcion para insertar en Pedido	
-	public function postPedido($fEntrega, $correo, $boleta, $idCliente){
+	public function postPedido($fEntrega, $correo, $boleta, $idCliente,$idpedido){
 		$consulta=("INSERT INTO pedido (fecha_entrega_pedido, correo_contacto_pedido, boleta_deposito_pedido, cliente_idcliente)VALUES (\"".$fEntrada."\", \"".$correo."\", \"".$boleta."\", \"".$idCliente."\")");
 		echo $consulta;
 		$db = new Connection();
@@ -115,6 +115,17 @@
 	}
 //
 //
+//===========================EMPRESA==================================
+//funcion para insertar en la tabla empresa===========================
+	public function postEmpresa($nombre,$nit, $direccion,$ciudad,$telefono,$logo){
+			$consulta=("INSERT INTO empresa (nombre_empresa, nit_empresa,direccion_empresa,ciudad_empresa,telefono_empresa,logo_empresa)VALUES (\"".$nombre."\", \"".$nit."\", \"".$direccion."\", \"".$ciudad."\", \"".$telefono."\", \"".$logo."\")");
+			echo $consulta;
+			$db = new Connection();
+			$cliente = $db->executeQuery($consulta);
+			
+		
+	}
+//==========================fotografias===============================
 //funcion para actualizar datos 
 	public function actualizarUsuario($tabla, $campo, $nuevoValor, $id)
 	{
